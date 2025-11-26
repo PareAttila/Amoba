@@ -1,0 +1,4 @@
+#Mon Nov 17 20:12:59 CET 2025
+configuration*?=1B7551D33308F6B52C69FE84FE7A42371041C80A
+module-resource*?\:checkstyle-suppressions.xml=D426DC50FE759E29F5C652D79F652B07CF5AD6B8
+module-resource*?\:checkstyle-xpath-suppressions.xml=B09C80DD7CA0974E292D2559C04C48F8C69121D0

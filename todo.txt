@@ -1,0 +1,25 @@
+a git repo tartalmazza a beadandó forráskódját és egyéb 'resource' fájlokat
+van benne .gitignore, ami kitiltotta a /target és más lefordított fájlok szinkronizálását
+java maven projekt van, a pom.xml tartalmát értem
+org.apache.maven.plugins.maven-jar-plugin-ban megadva a belépési pont (Main)
+egy függőségeket tartalmazó, futtatható JAR jön létre
+JUnit5 függőség beállítva, VO osztályok, Exception osztályok, MAin class kizárva
+vannak tesztek
+a tesztlefedettség 80%
+Használok Mockito-ot indokolt szituációban (pl. adatbázis-elérés helyett)
+Vannak VO (value object) osztályok
+Vannak az VO osztályokban Object osztály metódusai felülírva
+A teljes amőba játék játszható
+Van lépésellenőrzés
+Van nyerésellenőrzés
+mvn clean install eredményesen lefut
+az alkalmazás adatbázisba menti a játékosok nevét és a pontszámukat
+high score táblázat kiíratása
+opcionálisan: a játékállás kimentése XML vagy JSON formátumú fájlba és később visszatölteni
+A tervezési mintás dokumentumom tartalmazza-e, mik a tervezési minták
+A tervezési mintás beadandóm tartalmaz-e min 3 minta leírását
+A tervezési mintás dolgozatom a githu projekt gyökérkönyvtárában van, "tervezési minták.pdf" formában
+checkstyle működik, megy a build ezzel együtt
+használok naplózást a projektben
+RRF-es infó biztonságos moodle-kurzusnál a kért dolgokat megcsináltam
+RRF-es kurzust tavaly csináltam
