@@ -10,7 +10,7 @@ import org.amoba.db.DatabaseManager;
 import org.amoba.jatek.AmobaJatek;
 import org.amoba.mentes.AdatPerzisztencia;
 import org.amoba.mentes.Export;
-import org.amoba.modell.Jatekos;
+import org.amoba.jatek.Jatekos;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

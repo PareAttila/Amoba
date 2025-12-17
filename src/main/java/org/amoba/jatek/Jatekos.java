@@ -1,4 +1,4 @@
-package org.amoba.modell;
+package org.amoba.jatek;
 
 
 /**

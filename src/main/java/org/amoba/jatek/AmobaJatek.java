@@ -1,8 +1,6 @@
 package org.amoba.jatek;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.amoba.modell.GepiJatekos;
-import org.amoba.modell.Jatekos;
 import org.amoba.modell.Tabla;
 
 /**

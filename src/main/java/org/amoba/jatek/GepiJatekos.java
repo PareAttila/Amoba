@@ -1,8 +1,10 @@
-package org.amoba.modell;
+package org.amoba.jatek;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
+import org.amoba.modell.Tabla;
 
 /**
  * A gépi játékost reprezentáló osztály.
