@@ -1,6 +1,5 @@
 package org.amoba;
 
-import org.amoba.db.DatabaseManager;
 import org.amoba.konzol.KonzolVezerlo;
 
 /**
@@ -8,12 +7,12 @@ import org.amoba.konzol.KonzolVezerlo;
  */
 public class FoProgram {
     /**
-     * Inicializálja az adatbázist és elindítja a konzolos vezérlőt.
+     * A program belépési pontja.
      *
      * @param args a parancssori argumentumok.
      */
     public static void main(String[] args) {
-        DatabaseManager.initializeDatabase();
-        new KonzolVezerlo().start();
+        KonzolVezerlo vezerlo = new KonzolVezerlo();
+        vezerlo.start();
     }
 }

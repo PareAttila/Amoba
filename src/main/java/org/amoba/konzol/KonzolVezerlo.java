@@ -21,12 +21,14 @@ public class KonzolVezerlo {
     private static final Logger LOGGER = LoggerFactory.getLogger(KonzolVezerlo.class);
     private final Scanner scanner;
     private AmobaJatek game;
+    private boolean exit;
 
     /**
      * Létrehoz egy új konzolos vezérlőt.
      */
     public KonzolVezerlo() {
         this.scanner = new Scanner(System.in);
+        this.exit = false;
     }
 
     /**
@@ -46,7 +48,9 @@ public class KonzolVezerlo {
             game = startNewGame();
         }
 
-        gameLoop();
+        if (!exit) {
+            gameLoop();
+        }
         scanner.close();
     }
 
@@ -112,9 +116,17 @@ public class KonzolVezerlo {
     private AmobaJatek startNewGame() {
         LOGGER.info("Első játékos neve (X): ");
         String name1 = getPlayerName();
+        if ("kilépés".equalsIgnoreCase(name1)) {
+            exit = true;
+            return null;
+        }
 
         LOGGER.info("Második játékos neve (O), vagy írd be, hogy 'Gép' a gépi ellenfélhez: ");
         String name2 = scanner.nextLine();
+        if ("kilépés".equalsIgnoreCase(name2)) {
+            exit = true;
+            return null;
+        }
 
         boolean isAiOpponent = "Gép".equalsIgnoreCase(name2.trim());
         if (isAiOpponent) {
@@ -169,7 +181,7 @@ public class KonzolVezerlo {
     }
 
     private void gameLoop() {
-        while (!game.isJatekVege()) {
+        while (!game.isJatekVege() && !exit) {
             game.getTabla().printBoard();
             Jatekos currentPlayer = game.getAktualisJatekos();
             LOGGER.info("{} következik.", currentPlayer);
@@ -195,7 +207,8 @@ public class KonzolVezerlo {
 
             if ("kilépés".equalsIgnoreCase(input)) {
                 LOGGER.info("Viszlát!");
-                System.exit(0);
+                exit = true;
+                continue;
             }
 
             try {
@@ -216,7 +229,9 @@ public class KonzolVezerlo {
             }
         }
 
-        endGame();
+        if (!exit) {
+            endGame();
+        }
     }
 
     private void endGame() {

@@ -1,16 +1,5 @@
 package org.amoba.mentes;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.mockito.Mockito.anyString;
-import static org.mockito.Mockito.mockStatic;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-
 import org.amoba.db.DatabaseManager;
 import org.amoba.jatek.AmobaJatek;
 import org.junit.jupiter.api.Test;
@@ -18,6 +7,19 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.MockedStatic;
 import org.mockito.junit.jupiter.MockitoExtension;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.mockStatic;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class AdatPerzisztenciaTest {
@@ -43,6 +45,16 @@ class AdatPerzisztenciaTest {
     }
 
     @Test
+    void testSaveGame_DatabaseError() throws Exception {
+        try (MockedStatic<DatabaseManager> mockedDbManager = mockStatic(DatabaseManager.class)) {
+            mockedDbManager.when(DatabaseManager::getConnection).thenThrow(new SQLException("Database error"));
+
+            AmobaJatek jatek = new AmobaJatek("Player1", "Player2", 10, false);
+            AdatPerzisztencia.saveGame(jatek);
+        }
+    }
+
+    @Test
     void testLoadGame() throws Exception {
         try (MockedStatic<DatabaseManager> mockedDbManager = mockStatic(DatabaseManager.class)) {
             mockedDbManager.when(DatabaseManager::getConnection).thenReturn(mockConnection);
@@ -61,6 +73,31 @@ class AdatPerzisztenciaTest {
             assertNotNull(loadedGame);
             assertEquals("Player1", loadedGame.getJatekosok()[0].getName());
             assertEquals(10, loadedGame.getTabla().getSize());
+        }
+    }
+
+    @Test
+    void testLoadGame_NoGameFound() throws Exception {
+        try (MockedStatic<DatabaseManager> mockedDbManager = mockStatic(DatabaseManager.class)) {
+            mockedDbManager.when(DatabaseManager::getConnection).thenReturn(mockConnection);
+            when(mockConnection.prepareStatement(anyString())).thenReturn(mockStatement);
+            when(mockStatement.executeQuery()).thenReturn(mockResultSet);
+            when(mockResultSet.next()).thenReturn(false);
+
+            AmobaJatek loadedGame = AdatPerzisztencia.loadGame();
+
+            assertNull(loadedGame);
+        }
+    }
+
+    @Test
+    void testLoadGame_DatabaseError() throws Exception {
+        try (MockedStatic<DatabaseManager> mockedDbManager = mockStatic(DatabaseManager.class)) {
+            mockedDbManager.when(DatabaseManager::getConnection).thenThrow(new SQLException("Database error"));
+
+            AmobaJatek loadedGame = AdatPerzisztencia.loadGame();
+
+            assertNull(loadedGame);
         }
     }
 }

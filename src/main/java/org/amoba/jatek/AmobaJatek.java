@@ -1,5 +1,6 @@
 package org.amoba.jatek;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.amoba.modell.GepiJatekos;
 import org.amoba.modell.Jatekos;
 import org.amoba.modell.Tabla;
@@ -19,12 +20,9 @@ public class AmobaJatek {
     /**
      * Létrehoz egy új amőba játékot.
      *
-     * @param jatekos1Nev az első játékos neve.
-     *
-     * @param jatekos2Nev a második játékos neve.
-     *
-     * @param tablaMeret a játéktábla mérete.
-     *
+     * @param jatekos1Nev  az első játékos neve.
+     * @param jatekos2Nev  a második játékos neve.
+     * @param tablaMeret   a játéktábla mérete.
      * @param gepiEllenfel igaz, ha a második játékos gép.
      */
     public AmobaJatek(String jatekos1Nev, String jatekos2Nev, int tablaMeret, boolean gepiEllenfel) {
@@ -46,13 +44,10 @@ public class AmobaJatek {
     /**
      * Létrehoz egy amőba játékot egy meglévő állapotból.
      *
-     * @param tabla a játéktábla.
-     *
-     * @param jatekosok a játékosok.
-     *
+     * @param tabla                a játéktábla.
+     * @param jatekosok            a játékosok.
      * @param aktualisJatekosIndex az aktuális játékos indexe.
-     *
-     * @param gepiEllenfel igaz, ha a második játékos gép.
+     * @param gepiEllenfel         igaz, ha a második játékos gép.
      */
     public AmobaJatek(Tabla tabla, Jatekos[] jatekosok, int aktualisJatekosIndex, boolean gepiEllenfel) {
         this.tabla = tabla;
@@ -70,8 +65,7 @@ public class AmobaJatek {
     /**
      * A játékos lépése.
      *
-     * @param sor a sor, ahova a játékos lép.
-     *
+     * @param sor    a sor, ahova a játékos lép.
      * @param oszlop az oszlop, ahova a játékos lép.
      */
     public void lep(int sor, int oszlop) {
@@ -138,6 +132,7 @@ public class AmobaJatek {
      *
      * @return az aktuális játékos.
      */
+    @JsonIgnore
     public Jatekos getAktualisJatekos() {
         return jatekosok[aktualisJatekosIndex];
     }
@@ -173,7 +168,6 @@ public class AmobaJatek {
      * Visszaadja, hogy a játékos gép-e.
      *
      * @param jatekos a játékos.
-     *
      * @return igaz, ha a játékos gép.
      */
     public boolean isGepiJatekos(Jatekos jatekos) {
@@ -187,5 +181,13 @@ public class AmobaJatek {
      */
     public int getWinLength() {
         return winLength;
+    }
+
+    public String getPlayer1Name() {
+        return jatekosok[0].getName();
+    }
+
+    public String getPlayer2Name() {
+        return jatekosok[1].getName();
     }
 }

@@ -13,8 +13,7 @@ public class Tabla {
     /**
      * Létrehoz egy új játéktáblát.
      *
-     * @param size a tábla mérete.
-     *
+     * @param size      a tábla mérete.
      * @param winLength a győzelemhez szükséges jelek száma.
      */
     public Tabla(int size, int winLength) {
@@ -57,9 +56,7 @@ public class Tabla {
      * Visszaadja, hogy a cella üres-e.
      *
      * @param row a sor.
-     *
      * @param col az oszlop.
-     *
      * @return igaz, ha a cella üres.
      */
     public boolean isCellEmpty(int row, int col) {
@@ -70,9 +67,7 @@ public class Tabla {
      * Visszaadja, hogy a cella érvényes-e.
      *
      * @param row a sor.
-     *
      * @param col az oszlop.
-     *
      * @return igaz, ha a cella érvényes.
      */
     public boolean isCellValid(int row, int col) {
@@ -82,10 +77,8 @@ public class Tabla {
     /**
      * Lépést tesz a táblán.
      *
-     * @param row a sor.
-     *
-     * @param col az oszlop.
-     *
+     * @param row    a sor.
+     * @param col    az oszlop.
      * @param symbol a játékos jele.
      */
     public void makeMove(int row, int col, char symbol) {
@@ -114,9 +107,7 @@ public class Tabla {
      * Visszaadja, hogy a lépés legális-e.
      *
      * @param row a sor.
-     *
      * @param col az oszlop.
-     *
      * @return igaz, ha a lépés legális.
      */
     public boolean isMoveLegal(int row, int col) {
@@ -165,7 +156,6 @@ public class Tabla {
      * Ellenőrzi, hogy a játékos nyert-e.
      *
      * @param symbol a játékos jele.
-     *
      * @return igaz, ha a játékos nyert.
      */
     public boolean checkWin(char symbol) {
@@ -173,9 +163,9 @@ public class Tabla {
             for (int j = 0; j < size; j++) {
                 if (grid[i][j] == symbol) {
                     if (checkDirection(i, j, 1, 0, symbol) ||
-                        checkDirection(i, j, 0, 1, symbol) ||
-                        checkDirection(i, j, 1, 1, symbol) ||
-                        checkDirection(i, j, 1, -1, symbol)) {
+                            checkDirection(i, j, 0, 1, symbol) ||
+                            checkDirection(i, j, 1, 1, symbol) ||
+                            checkDirection(i, j, 1, -1, symbol)) {
                         return true;
                     }
                 }

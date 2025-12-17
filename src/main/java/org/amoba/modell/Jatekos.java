@@ -5,19 +5,21 @@ package org.amoba.modell;
  * A játékost reprezentáló osztály.
  */
 public class Jatekos {
-    private final String name;
-    private final char symbol;
+    private String name;
+    private char symbol;
 
     /**
      * Létrehoz egy új játékost.
      *
-     * @param name a játékos neve.
-     *
+     * @param name   a játékos neve.
      * @param symbol a játékos jele.
      */
     public Jatekos(String name, char symbol) {
         this.name = name;
         this.symbol = symbol;
+    }
+
+    public Jatekos() {
     }
 
     /**

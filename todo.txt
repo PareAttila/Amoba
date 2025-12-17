@@ -1,4 +1,0 @@
-a tesztlefedettség 80%
-A tervezési mintás dokumentumom tartalmazza-e, mik a tervezési minták
-A tervezési mintás beadandóm tartalmaz-e min 3 minta leírását
-A tervezési mintás dolgozatom a githu projekt gyökérkönyvtárában van, "tervezési minták.pdf" formában

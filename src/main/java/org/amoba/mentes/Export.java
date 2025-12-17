@@ -19,11 +19,9 @@ public class Export {
     /**
      * Exportálja a játékállást a megadott formátumban.
      *
-     * @param jatek a játék, amit exportálni kell.
-     *
+     * @param jatek    a játék, amit exportálni kell.
      * @param fileName a fájl neve, amibe exportálni kell.
-     *
-     * @param format az exportálás formátuma (xml vagy json).
+     * @param format   az exportálás formátuma (xml vagy json).
      */
     public static void exportToFile(AmobaJatek jatek, String fileName, String format) {
         if ("xml".equalsIgnoreCase(format)) {
