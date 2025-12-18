@@ -18,10 +18,6 @@ public class Jatekos {
         this.name = name;
         this.symbol = symbol;
     }
-
-    public Jatekos() {
-    }
-
     /**
      * Visszaadja a játékos nevét.
      *
